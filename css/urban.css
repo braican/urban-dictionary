@@ -229,6 +229,8 @@ ul li.correct{
  * --game over
  * ----------------------------------- */
 
-
+#game-over{
+    display: none;
+}
 
 

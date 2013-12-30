@@ -4,8 +4,19 @@
 
 (function(URBAN, $, undefined){
 
+    // -------------------------------
+    // public vars
+    //
     URBAN.DEFS = {};
 
+    // -------------------------------
+    // private vars
+    //
+    var NUMBER = 3;
+
+    // -------------------------------
+    // private functions
+    //
     function renderTheGame(){
         $.each(URBAN.DEFS, function(index, val) {
             var $words = $('#words li'),
@@ -51,9 +62,15 @@
         });
     }
 
+    // -------------------------------
+    // pubic functions
+    //
     URBAN.init = function(){
-        getDefs(12);
+        getDefs(NUMBER);
 
+        //
+        // when a link is clicked
+        //
         $(document).on('click', 'ul li', function(event){
             event.preventDefault();
             
@@ -69,10 +86,12 @@
                     def = $('#defs li.selected').text();
 
                 if(URBAN.DEFS[word] == def){
-                    $('#result .gotit').fadeIn();
+                    
                     $('li.selected').removeClass('selected').addClass('correct');
                     if($('#words li').length === $('#words li.correct').length){
-                        console.log("game over");
+                        $('#game-over').fadeIn();
+                    } else {
+                        $('#result .gotit').fadeIn();
                     }
                 } else {
                     setTimeout(function(){
@@ -86,6 +105,20 @@
                     $('#result > span').fadeOut();
                 }, 3000);
             }
+        });
+
+        //
+        // play again!
+        //
+        $('.play-again').on('click', function(event){
+            event.preventDefault();
+            $('#the-game, #game-over').fadeOut(function(){
+                $('#words, #defs').empty();
+                URBAN.DEFS = {};
+                getDefs(NUMBER);
+
+                $('#loading').fadeIn();
+            })
         });
     };
     
