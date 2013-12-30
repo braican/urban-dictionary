@@ -9,19 +9,23 @@
     function renderTheGame(){
         $.each(URBAN.DEFS, function(index, val) {
             var $words = $('#words li'),
-                $defs = $('#defs li');
-            if($words.length === 0){
+                $defs = $('#defs li'),
+                w_pos = Math.floor(($words.length + 1) * Math.random()),
+                d_pos = Math.floor(($defs.length + 1) * Math.random());
+
+            if($words.length === w_pos){
                 $('#words').append('<li>' + index + '</li>');
             } else {
-                $words.eq(Math.floor(Math.random()*$words.length)).before('<li>' + index + '</li>');
+                $words.eq(w_pos).before('<li>' + index + '</li>');
             }
             
-            if($defs.length === 0){
+            if($defs.length === d_pos){
                 $('#defs').append('<li>' + val + '</li>');
             } else {
-                $defs.eq(Math.floor(Math.random()*$defs.length)).before('<li>' + val + '</li>');
+                $defs.eq(d_pos).before('<li>' + val + '</li>');
             }
         });
+
     }
 
     function getDefs(x){
@@ -65,11 +69,12 @@
                     def = $('#defs li.selected').text();
 
                 if(URBAN.DEFS[word] == def){
-                    console.log("got it");
                     $('#result .gotit').fadeIn();
                     $('li.selected').removeClass('selected').addClass('correct');
+                    if($('#words li').length === $('#words li.correct').length){
+                        console.log("game over");
+                    }
                 } else {
-                    console.log("nope");
                     setTimeout(function(){
                         $('li.selected').removeClass('selected');
                     }, 600);
