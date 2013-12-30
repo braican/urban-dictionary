@@ -4,19 +4,32 @@
     <meta charset="UTF-8">
     <title>Urban Dictionary</title>
     
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400|Bevan' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/urban.css">
 </head>
 <body>
-    <div id="container">
-        <div class="left">
-            <h1>The Words</h1>
-            <ul id="words"></ul>
-        </div>
     
-        <div class="right">
-            <h1>The Definitions</h1>
-            <ul id="defs"></ul>
+    <div id="loading">
+        <h3>Loading</h3>
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+    </div>
+
+    <div id="container">
+        <h1>The Urban Dictionary Matching Game</h1>
+        <div id="the-game">
+            <div class="left">
+                <h2>The Words</h2>
+                <ul id="words"></ul>
+            </div>
+        
+            <div class="right">
+                <h2>The Definitions</h2>
+                <ul id="defs"></ul>
+            </div>
         </div>
 
         <div id="result">
@@ -35,7 +48,7 @@
       ga('send', 'pageview');
 
     </script>
-    
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="js/main.js"></script>
 
